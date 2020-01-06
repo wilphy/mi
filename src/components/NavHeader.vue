@@ -194,6 +194,7 @@ export default {
             box-shadow: 0 7px 6px 0px rgba(0, 0, 0, 0.1);
             z-index: 10;
             transition: all 0.5s;
+            background-color: #fff;
             .product {
               position: relative;
               float: left;
