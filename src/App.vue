@@ -7,7 +7,31 @@
 <script>
 export default {
   name: "app",
-  components: {}
+  components: {},
+  data() {
+    return {};
+  },
+
+  mounted() {
+    this.getUser();
+    this.getCartCount();
+  },
+
+  methods: {
+    // 获取用户信息
+    getUser() {
+      this.axios.get("/user").then(() => {
+        //todo 保存到vuex
+      });
+    },
+
+    //获取购物车数量信息
+    getCartCount() {
+      this.axios.get("/carts/products/sum").then(() => {
+        //todo 保存到vuex
+      });
+    }
+  }
 };
 </script>
 
