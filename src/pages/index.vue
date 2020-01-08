@@ -95,7 +95,9 @@
                 <div class="item-info">
                   <h3>{{ item.name }}</h3>
                   <p>{{ item.subtitle }}</p>
-                  <p class="price">{{ item.price }}元</p>
+                  <p class="price" @click="addToCart(item.id)">
+                    {{ item.price }}元
+                  </p>
                 </div>
               </div>
             </div>
@@ -104,6 +106,21 @@
       </div>
     </div>
     <service-bar></service-bar>
+
+    <!-- 弹框 -->
+    <modal
+      title="提示"
+      sureText="查看购物车"
+      btnType="1"
+      modalType="middle"
+      :showModal="showModal"
+      @submit="gotoCart"
+      @cancel="showModal=false"
+    >
+      <template v-slot:body>
+        <p>商品添加成功！</p>
+      </template>
+    </modal>
   </div>
 </template>
 
@@ -111,12 +128,14 @@
 import { swiper, swiperSlide } from "vue-awesome-swiper";
 import "swiper/dist/css/swiper.css";
 import ServiceBar from "../components/ServiceBar";
+import Modal from "../components/Modal";
 export default {
   name: "index",
   components: {
     swiper,
     swiperSlide,
-    ServiceBar
+    ServiceBar,
+    Modal
   },
   data() {
     return {
@@ -215,7 +234,10 @@ export default {
         }
       ],
       //手机产品列表
-      phoneList: []
+      phoneList: [],
+
+      //弹框
+      showModal: false
     };
   },
 
@@ -224,17 +246,39 @@ export default {
   },
 
   methods: {
+    //获取商品数据
     init() {
       this.axios
         .get("/products", {
           params: {
             categaryId: 100012,
-            pageSize: 8
+            pageSize: 14
           }
         })
         .then(res => {
-          this.phoneList = [res.list.slice(4, 8), res.list.slice(4, 8)];
+          res.list = res.list.slice(6, 14);
+          this.phoneList = [res.list.slice(0, 4), res.list.slice(4, 8)];
         });
+    },
+
+    //加入购物车
+    addToCart() {
+      this.showModal = true;
+      return;
+      // this.axios
+      //   .post("/carts", {
+      //     productId: id,
+      //     selected: true
+      //   })
+      //   .then(() => {})
+      //   .catch(() => {
+      //     this.showModal = true;
+      //   });
+    },
+
+    //跳转去购物页面
+    gotoCart() {
+      this.$router.push('/cart')
     }
   }
 };
