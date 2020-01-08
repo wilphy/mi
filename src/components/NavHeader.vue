@@ -38,7 +38,7 @@
                 >
                   <a href="" target="_blank">
                     <div class="pd-img">
-                      <img :src="item.mainImage" :alt="item.subtitle" />
+                      <img v-lazy="item.mainImage" :alt="item.subtitle" />
                     </div>
                     <div class="pd-name">{{ item.name }}</div>
                     <div class="pd-price">{{ item.price | currency }}</div>
