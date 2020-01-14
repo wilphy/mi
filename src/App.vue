@@ -20,15 +20,17 @@ export default {
   methods: {
     // 获取用户信息
     getUser() {
-      this.axios.get("/user").then(() => {
-        //todo 保存到vuex
+      this.axios.get("/user").then((res) => {
+        // 保存到vuex
+        this.$store.dispatch("saveUserName", res.username);
       });
     },
 
     //获取购物车数量信息
     getCartCount() {
-      this.axios.get("/carts/products/sum").then(() => {
-        //todo 保存到vuex
+      this.axios.get("/carts/products/sum").then((res) => {
+        // 保存到vuex
+        this.$store.dispatch("saveCartCount", res);
       });
     }
   }
