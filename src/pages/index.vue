@@ -47,7 +47,9 @@
         <swiper :options="swiperOption">
           <!-- slides -->
           <swiper-slide v-for="(item, index) in slideList" :key="index">
-            <a :href="'/#/product/' + item.id"><img v-lazy="item.img" alt=""/></a>
+            <a :href="'/#/product/' + item.id"
+              ><img v-lazy="item.img" alt=""
+            /></a>
           </swiper-slide>
           <!-- Optional controls -->
           <div class="swiper-pagination" slot="pagination"></div>
@@ -70,8 +72,8 @@
       <!-- banner -->
       <div class="banner">
         <a :href="'/#/product/30'">
-          <img v-lazy="'/imgs/banner-1.png'" alt="" />
-        </a>'
+          <img v-lazy="'/imgs/banner-1.png'" alt="" /> </a
+        >'
       </div>
     </div>
 
@@ -115,7 +117,7 @@
       modalType="middle"
       :showModal="showModal"
       @submit="gotoCart"
-      @cancel="showModal=false"
+      @cancel="showModal = false"
     >
       <template v-slot:body>
         <p>商品添加成功！</p>
@@ -262,23 +264,24 @@ export default {
     },
 
     //加入购物车
-    addToCart() {
-      this.showModal = true;
-      return;
-      // this.axios
-      //   .post("/carts", {
-      //     productId: id,
-      //     selected: true
-      //   })
-      //   .then(() => {})
-      //   .catch(() => {
-      //     this.showModal = true;
-      //   });
+    addToCart(id) {
+      this.axios
+        .post("/carts", {
+          productId: id,
+          selected: true
+        })
+        .then(res => {
+          this.showModal = true;
+          this.$store.dispatch("saveCartCount", res.cartTotalQuantity);
+        })
+        .catch(() => {
+          this.showModal = true;
+        });
     },
 
     //跳转去购物页面
     gotoCart() {
-      this.$router.push('/cart')
+      this.$router.push("/cart");
     }
   }
 };
