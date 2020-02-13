@@ -62,7 +62,7 @@
           <div class="total fr">
             合计：<span>{{ cartTotalPrice }}</span
             >元
-            <a href="javascript:;" class="btn">去结算</a>
+            <a href="javascript:;" class="btn" @click="order">去结算</a>
           </div>
         </div>
       </div>
@@ -148,6 +148,15 @@ export default {
       this.allChecked = res.selectedAll;
       this.cartTotalPrice = res.cartTotalPrice;
       this.checkedNum = this.list.filter(item => item.productSelected).length;
+    },
+    //订单结算
+    order() {
+      let isCheck = this.list.every(item => !item.productSelected); // 返回的是一个布尔值
+      if (isCheck) {
+        alert("请至少选择一件商品");
+      } else {
+        this.$router.push("/order/confirm");
+      }
     }
   }
 };
