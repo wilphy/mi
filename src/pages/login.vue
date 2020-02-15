@@ -70,7 +70,19 @@ export default {
             this.$cookie.set("userId", res.id, { expires: "1M" });
             // 保存用户名
             this.$store.dispatch("saveUserName", res.username);
-            this.$router.push("/index");
+            this.$router.push({
+              // 1、query传参
+              // path: "/index",
+              // query: {
+              //   from: "login"
+              // }
+
+              // 2、param传参
+              name: "index",
+              params: {
+                from: "login"
+              }
+            });
           });
       }
     },
