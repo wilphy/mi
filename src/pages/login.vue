@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import { Message } from "element-ui";
 export default {
   data() {
     return {
@@ -56,7 +57,7 @@ export default {
   methods: {
     login() {
       if (this.username.length == 0) {
-        alert("请输入用户名");
+        Message.warning("请输入用户名");
         return;
       } else {
         let { username, password } = this; //解构赋值
@@ -81,7 +82,7 @@ export default {
           email: "admin1@163.com"
         })
         .then(() => {
-          alert("注册成功");
+          Message.info("注册成功");
         });
     }
   }
