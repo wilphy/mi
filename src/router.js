@@ -8,6 +8,8 @@ import Detail from "./pages/detail";
 import Cart from "./pages/cart";
 import Order from "./pages/order";
 import OrderConfirm from "./pages/orderConfirm";
+import OrderList from "./pages/orderList";
+import OrderPay from "./pages/orderPay";
 
 Vue.use(Router);
 
@@ -55,6 +57,16 @@ export default new Router({
           path: "confirm",
           name: "order-confirm",
           component: OrderConfirm
+        },
+        {
+          path: "list",
+          name: "order-list",
+          component: OrderList
+        },
+        {
+          path: "pay",
+          name: "order-pay",
+          component: OrderPay
         }
       ]
     }
