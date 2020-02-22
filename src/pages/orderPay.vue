@@ -11,7 +11,7 @@
               <p>收货信息：{{ addressInfo }}</p>
             </div>
             <div class="order-total">
-              <p>应付总额：<span>0.01</span>元</p>
+              <p>应付总额：<span>{{ orderDetail[0].totalPrice }}</span>元</p>
               <p>
                 订单详情<em
                   class="icon-down"
@@ -50,8 +50,16 @@
           <h3>选择以下支付方式付款</h3>
           <div class="pay-way">
             <p>支付平台</p>
-            <div class="pay pay-ali"></div>
-            <div class="pay pay-wechat"></div>
+            <div
+              class="pay pay-ali"
+              :class="{ checked: payType == 1 }"
+              @click="paySubmit(1)"
+            ></div>
+            <div
+              class="pay pay-wechat"
+              :class="{ checked: payType == 2 }"
+              @click="paySubmit(2)"
+            ></div>
           </div>
         </div>
       </div>
@@ -66,7 +74,8 @@ export default {
       orderNo: this.$route.query.orderNo,
       addressInfo: "", //收货人地址
       orderDetail: [], //订单详情，包含商品列表
-      showDetail: false //是否显示订单详情
+      showDetail: false, //是否显示订单详情
+      payType: "" //支付类型
     };
   },
   mounted() {
@@ -79,6 +88,11 @@ export default {
         this.addressInfo = `${item.receiverName} ${item.receiverMobile} ${item.receiverProvince} ${item.receiverCity} ${item.receiverDistrict} ${item.receiverAddress}`;
         this.orderDetail = res.orderItemVoList;
       });
+    },
+    paySubmit(payType) {
+      if (payType == 1) {
+        window.open(`/#/order/alipay?orderId=${this.orderNo}`, "_blank");
+      }
     }
   }
 };
