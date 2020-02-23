@@ -31,7 +31,7 @@
           >
           <div class="btn-group" v-if="btnType == 3">
             <a href="" class="btn" @click="$emit('submit')">{{ sureText }}</a>
-            <a href="" class="btn" @click="$emit('cancel')">{{ cancelText }}</a>
+            <a href="" class="btn btn-default" @click="$emit('cancel')">{{ cancelText }}</a>
           </div>
         </div>
       </div>
