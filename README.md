@@ -30,7 +30,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ![Image Text](https://raw.githubusercontent.com/wilphy/mi/master/public/screenshot/goodsList.png)
 ![Image Text](https://raw.githubusercontent.com/wilphy/mi/master/public/screenshot/goToShopcar.png)
 ![Image Text](https://raw.githubusercontent.com/wilphy/mi/master/public/screenshot/product.png)
-![Image Text](https://raw.githubusercontent.com/wilphy/mi/master/public/screenshot/login.png)
 ![Image Text](https://raw.githubusercontent.com/wilphy/mi/master/public/screenshot/video.png)
 ![Image Text](https://raw.githubusercontent.com/wilphy/mi/master/public/screenshot/login.png)
 ![Image Text](https://raw.githubusercontent.com/wilphy/mi/master/public/screenshot/shopcar.png)
