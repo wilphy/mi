@@ -7,7 +7,7 @@
       <div class="container">
         <div class="login-form">
           <h3>
-            <span class="checked">帐号登录</span>
+            <span class="checked">账号注册</span>
           </h3>
           <div class="input">
             <input type="text" placeholder="请输入帐号" v-model="username" />
@@ -20,11 +20,11 @@
             />
           </div>
           <div class="btn-box">
-            <a href="javascript:;" class="btn" @click="login">登录</a>
+            <a href="javascript:;" class="btn" @click="register">注册</a>
           </div>
           <div class="tips">
             <!-- <div class="sms" @click="register">手机短信登录/注册</div> -->
-            <div class="reg" @click="goToRegister">去注册</div>
+            <div class="reg" @click="goToLogin">去登录</div>
           </div>
         </div>
       </div>
@@ -45,59 +45,34 @@
 
 <script>
 import { Message } from "element-ui";
+
 export default {
   data() {
     return {
       username: "",
       password: "",
-      userId: "",
     };
   },
   methods: {
-    login() {
-      if (this.username.length == 0) {
-        Message.warning("请输入用户名");
-        return;
+    goToLogin() {
+      this.$router.push("/login");
+    },
+    register() {
+      if (this.username.length === 0 || this.password.length === 0) {
+        Message.warning("用户名或密码不能为空");
       } else {
-        let { username, password } = this; //解构赋值
         this.axios
-          .post("/user/login", {
-            username,
-            password,
+          .post("/user/register", {
+            username: this.username,
+            password: this.password,
           })
-          .then((res) => {
-            this.$cookie.set("userId", res.id, { expires: "Session" });
-            // 保存用户名
-            this.$store.dispatch("saveUserName", res.username);
-            this.$router.push({
-              // 1、query传参
-              // path: "/index",
-              // query: {
-              //   from: "login"
-              // }
-
-              // 2、param传参
-              name: "index",
-              params: {
-                from: "login",
-              },
-            });
+          .then(() => {
+            Message.success("注册成功，即将跳转至登录页");
+            setTimeout(() => {
+              this.$router.push("login");
+            }, 1500);
           });
       }
-    },
-    // register() {
-    //   this.axios
-    //     .post("/user/register", {
-    //       username: "admin1",
-    //       password: "admin1",
-    //       email: "admin1@163.com"
-    //     })
-    //     .then(() => {
-    //       Message.info("注册成功");
-    //     });
-    // }
-    goToRegister() {
-      this.$router.push("/register");
     },
   },
 };
