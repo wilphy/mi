@@ -47,7 +47,13 @@
         <swiper :options="swiperOption">
           <!-- slides -->
           <swiper-slide v-for="(item, index) in slideList" :key="index">
-            <a :href="'/#/product/' + item.id"><img :src="item.img" alt=""/></a>
+            <a :href="'/#/product/' + item.id">
+              <!-- 第一张和最后一张轮播图不进行懒加载 -->
+              <img
+                :src="item.img"
+                v-if="index == 0 || index == item.length - 1"/>
+              <img v-else v-lazy="item.img" alt=""
+            /></a>
           </swiper-slide>
           <!-- Optional controls -->
           <div class="swiper-pagination" slot="pagination"></div>
