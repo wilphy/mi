@@ -47,9 +47,7 @@
         <swiper :options="swiperOption">
           <!-- slides -->
           <swiper-slide v-for="(item, index) in slideList" :key="index">
-            <a :href="'/#/product/' + item.id"
-              ><img v-lazy="item.img" alt=""
-            /></a>
+            <a :href="'/#/product/' + item.id"><img :src="item.img" alt=""/></a>
           </swiper-slide>
           <!-- Optional controls -->
           <div class="swiper-pagination" slot="pagination"></div>
@@ -137,7 +135,7 @@ export default {
     swiper,
     swiperSlide,
     ServiceBar,
-    Modal
+    Modal,
   },
   data() {
     return {
@@ -150,41 +148,41 @@ export default {
           slideShadows: true,
           shadow: true,
           shadowOffset: 100,
-          shadowScale: 0.6
+          shadowScale: 0.6,
         },
         //分页器
         pagination: {
           el: ".swiper-pagination",
-          clickable: true
+          clickable: true,
         },
         //控制前进后退
         navigation: {
           nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev"
-        }
+          prevEl: ".swiper-button-prev",
+        },
       },
       //轮播图列表
       slideList: [
         {
           id: "42",
-          img: "/imgs/slider/slide-1.jpg"
+          img: "./imgs/slider/slide-1.jpg",
         },
         {
           id: "42",
-          img: "/imgs/slider/slide-2.jpg"
+          img: "./imgs/slider/slide-2.jpg",
         },
         {
           id: "42",
-          img: "/imgs/slider/slide-3.jpg"
+          img: "./imgs/slider/slide-3.jpg",
         },
         {
           id: "42",
-          img: "/imgs/slider/slide-4.jpg"
+          img: "./imgs/slider/slide-4.jpg",
         },
         {
           id: "42",
-          img: "/imgs/slider/slide-5.jpg"
-        }
+          img: "./imgs/slider/slide-5.jpg",
+        },
       ],
       //菜单列表
       menuList: [
@@ -192,54 +190,54 @@ export default {
           {
             id: 30,
             img: "/imgs/item-box-1.png",
-            name: "小米CC9"
+            name: "小米CC9",
           },
           {
             id: 31,
             img: "/imgs/item-box-2.png",
-            name: "小米8青春版"
+            name: "小米8青春版",
           },
           {
             id: 32,
             img: "/imgs/item-box-3.jpg",
-            name: "RedMi K20 Pro"
+            name: "RedMi K20 Pro",
           },
           {
             id: 33,
             img: "/imgs/item-box-4.jpg",
-            name: "移动4G"
-          }
+            name: "移动4G",
+          },
         ],
         [1, 1, 1, 1],
         [1, 2, 3, 4],
         [1, 2, 3, 4],
         [1, 2, 3, 4],
-        [1, 2, 3, 4]
+        [1, 2, 3, 4],
       ],
       //广告列表
       adsList: [
         {
           id: 33,
-          img: "/imgs/ads/ads-1.png"
+          img: "/imgs/ads/ads-1.png",
         },
         {
           id: 48,
-          img: "/imgs/ads/ads-2.jpg"
+          img: "/imgs/ads/ads-2.jpg",
         },
         {
           id: 45,
-          img: "/imgs/ads/ads-3.png"
+          img: "/imgs/ads/ads-3.png",
         },
         {
           id: 47,
-          img: "/imgs/ads/ads-4.jpg"
-        }
+          img: "/imgs/ads/ads-4.jpg",
+        },
       ],
       //手机产品列表
       phoneList: [],
 
       //弹框
-      showModal: false
+      showModal: false,
     };
   },
 
@@ -254,10 +252,10 @@ export default {
         .get("/products", {
           params: {
             categaryId: 100012,
-            pageSize: 14
-          }
+            pageSize: 14,
+          },
         })
-        .then(res => {
+        .then((res) => {
           res.list = res.list.slice(6, 14);
           this.phoneList = [res.list.slice(0, 4), res.list.slice(4, 8)];
         });
@@ -268,9 +266,9 @@ export default {
       this.axios
         .post("/carts", {
           productId: id,
-          selected: true
+          selected: true,
         })
-        .then(res => {
+        .then((res) => {
           this.showModal = true;
           this.$store.dispatch("saveCartCount", res.cartTotalQuantity);
         });
@@ -279,8 +277,8 @@ export default {
     //跳转去购物页面
     gotoCart() {
       this.$router.push("/cart");
-    }
-  }
+    },
+  },
 };
 </script>
 
