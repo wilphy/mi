@@ -10,14 +10,22 @@
             <span class="checked">账号注册</span>
           </h3>
           <div class="input">
-            <input type="text" placeholder="请输入帐号" v-model="username" />
+            <el-input
+              ref="inputRef"
+              clearable
+              type="text"
+              placeholder="请输入帐号"
+              v-model="username"
+            />
           </div>
           <div class="input">
-            <input
+            <el-input
               type="password"
               placeholder="请输入密码"
               v-model="password"
-              @keyup.enter="register"
+              show-password
+              clearable
+              @keyup.enter.native="register"
             />
           </div>
           <div class="btn-box">
@@ -53,6 +61,9 @@ export default {
       username: "",
       password: "",
     };
+  },
+  mounted() {
+    this.$refs.inputRef.$el.children[0].focus();
   },
   methods: {
     goToLogin() {
@@ -118,15 +129,15 @@ export default {
         .input {
           display: inline-block;
           width: 348px;
-          height: 50px;
+          // height: 50px;
           border: 1px solid #e5e5e5;
           margin-bottom: 20px;
-          input {
-            width: 100%;
-            height: 100%;
-            border: none;
-            padding: 18px;
-          }
+          // input {
+          //   width: 100%;
+          //   height: 100%;
+          //   border: none;
+          //   padding: 18px;
+          // }
         }
         .btn {
           width: 100%;
