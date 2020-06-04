@@ -17,6 +17,7 @@
               type="password"
               placeholder="请输入密码"
               v-model="password"
+              @keyup.enter="login"
             />
           </div>
           <div class="btn-box">
