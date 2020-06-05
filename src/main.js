@@ -4,7 +4,7 @@ import axios from "axios";
 import VueAxios from "vue-axios";
 import VueLazyLoad from "vue-lazyload";
 import VueCookie from "vue-cookie";
-import { Message, Input } from "element-ui";
+import { Message, Input, Form, FormItem } from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 import store from "./store";
 import App from "./App.vue";
@@ -52,6 +52,8 @@ Vue.config.productionTip = false;
 Vue.prototype.$message = Message;
 
 Vue.use(Input);
+Vue.use(Form);
+Vue.use(FormItem);
 
 router.beforeEach((to, from, next) => {
   // 让页面回到顶部

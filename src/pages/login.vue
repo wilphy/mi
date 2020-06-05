@@ -37,7 +37,6 @@
           </div>
         </div>
       </div>
-    </div>
     <div class="footer">
       <div class="footer-link">
         <a href="javascript:;">111</a><span>|</span>
@@ -97,17 +96,6 @@ export default {
           });
       }
     },
-    // register() {
-    //   this.axios
-    //     .post("/user/register", {
-    //       username: "admin1",
-    //       password: "admin1",
-    //       email: "admin1@163.com"
-    //     })
-    //     .then(() => {
-    //       Message.info("注册成功");
-    //     });
-    // }
     goToRegister() {
       this.$router.push("/register");
     },

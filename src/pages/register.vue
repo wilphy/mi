@@ -5,37 +5,67 @@
     </div>
     <div class="wrapper">
       <div class="container">
-        <div class="login-form">
+        <el-form
+          :model="ruleForm"
+          :rules="ruleForm"
+          ref="ruleForm"
+          class="login-form"
+        >
           <h3>
             <span class="checked">账号注册</span>
           </h3>
-          <div class="input">
+          <el-form-item
+            prop="username"
+            class="input"
+            :rules="[
+              { required: true, message: 'asas', trigger: 'change' },
+              {
+                min: 3,
+                max: 8,
+                message: '长度在 3 到 8 个字符',
+                trigger: 'change',
+              },
+            ]"
+          >
             <el-input
               ref="inputRef"
               clearable
               type="text"
               placeholder="请输入帐号"
-              v-model="username"
+              v-model="ruleForm.username"
             />
-          </div>
-          <div class="input">
+          </el-form-item>
+          <el-form-item
+            prop="password"
+            class="input"
+            :rules="[
+              { required: true, message: 'asas', trigger: 'change' },
+              {
+                min: 3,
+                max: 8,
+                message: '长度在 3 到 8 个字符',
+                trigger: 'change',
+              },
+            ]"
+          >
             <el-input
               type="password"
               placeholder="请输入密码"
-              v-model="password"
+              v-model="ruleForm.password"
               show-password
               clearable
               @keyup.enter.native="register"
             />
-          </div>
+          </el-form-item>
           <div class="btn-box">
+            <!-- <a href="javascript:;" class="btn" @click="submitForm(formName)">注册</a> -->
             <a href="javascript:;" class="btn" @click="register">注册</a>
           </div>
           <div class="tips">
             <!-- <div class="sms" @click="register">手机短信登录/注册</div> -->
             <div class="reg" @click="goToLogin">去登录</div>
           </div>
-        </div>
+        </el-form>
       </div>
     </div>
     <div class="footer">
@@ -58,8 +88,10 @@ import { Message } from "element-ui";
 export default {
   data() {
     return {
-      username: "",
-      password: "",
+      ruleForm: {
+        username: "",
+        password: "",
+      },
     };
   },
   mounted() {
@@ -70,13 +102,17 @@ export default {
       this.$router.push("/login");
     },
     register() {
-      if (this.username.length === 0 || this.password.length === 0) {
-        Message.warning("用户名或密码不能为空");
+      if (
+        (this.ruleForm.username.length < 3 &&
+          this.ruleForm.username.length > 8) ||
+        (this.ruleForm.password.length < 3 && this.ruleForm.password.length > 8)
+      ) {
+        Message.warning("用户名或密码长度在 3 到 8 个字符");
       } else {
         this.axios
           .post("/user/register", {
-            username: this.username,
-            password: this.password,
+            username: this.ruleForm.username,
+            password: this.ruleForm.password,
           })
           .then(() => {
             Message.success("注册成功，即将跳转至登录页");
