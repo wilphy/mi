@@ -37,16 +37,17 @@
           </div>
         </div>
       </div>
-    <div class="footer">
-      <div class="footer-link">
-        <a href="javascript:;">111</a><span>|</span>
-        <a href="javascript:;">222</a><span>|</span>
-        <a href="javascript:;">333</a><span>|</span>
-        <a href="javascript:;">444</a>
+      <div class="footer">
+        <div class="footer-link">
+          <a href="javascript:;">111</a><span>|</span>
+          <a href="javascript:;">222</a><span>|</span>
+          <a href="javascript:;">333</a><span>|</span>
+          <a href="javascript:;">444</a>
+        </div>
+        <p class="copyright">
+          Copyright ©2020 mi.com All Rights Reserved.
+        </p>
       </div>
-      <p class="copyright">
-        Copyright ©2020 mi.com All Rights Reserved.
-      </p>
     </div>
   </div>
 </template>
