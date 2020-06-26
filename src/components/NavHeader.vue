@@ -51,7 +51,9 @@
           </div>
           <div class="item-menu">
             <span>RedMi红米 </span>
-            <div class="children"></div>
+            <div class="children" style="text-align: center; font-size: 20px">
+              暂无此类产品
+            </div>
           </div>
           <div class="item-menu">
             <span>电视</span>
@@ -132,44 +134,44 @@ export default {
   name: "nav-header",
   data() {
     return {
-      phoneList: []
-    };
+      phoneList: [],
+    }
   },
   computed: {
     username() {
-      return this.$store.state.username;
+      return this.$store.state.username
     },
     cartCount() {
-      return this.$store.state.cartCount;
-    }
+      return this.$store.state.cartCount
+    },
   },
   filters: {
     currency(val) {
-      if (!val) return "0.00";
-      return "￥" + val.toFixed(2) + "元";
-    }
+      if (!val) return "0.00"
+      return "￥" + val.toFixed(2) + "元"
+    },
   },
   mounted() {
-    this.getProductList();
+    this.getProductList()
 
-    let params = this.$route.params;
+    let params = this.$route.params
     if (params && params.from == "login") {
-      this.getCartCount();
+      this.getCartCount()
     }
   },
   methods: {
     //登录
     login() {
-      this.$router.push("/login");
+      this.$router.push("/login")
     },
     // 退出登录
     logout() {
       this.axios.post("/user/logout").then(() => {
-        this.$message.success("退出成功");
-        this.$cookie.set("userId", "", { expires: "-1" });
-        this.$store.dispatch("saveUserName", "");
-        this.$store.dispatch("saveCartCount", "0");
-      });
+        this.$message.success("退出成功")
+        this.$cookie.set("userId", "", { expires: "-1" })
+        this.$store.dispatch("saveUserName", "")
+        this.$store.dispatch("saveCartCount", "0")
+      })
     },
     //获取商品信息
     getProductList() {
@@ -177,28 +179,28 @@ export default {
         .get("/products", {
           params: {
             categoryId: "100012",
-            pageSize: 6
-          }
+            pageSize: 6,
+          },
         })
-        .then(res => {
-          this.phoneList = res.list;
-        });
+        .then((res) => {
+          this.phoneList = res.list
+        })
     },
 
     //获取购物车数量信息
     getCartCount() {
-      this.axios.get("/carts/products/sum").then(res => {
+      this.axios.get("/carts/products/sum").then((res) => {
         // 保存到vuex
-        this.$store.dispatch("saveCartCount", res);
-      });
+        this.$store.dispatch("saveCartCount", res)
+      })
     },
 
     //跳转购物车
     goToCart() {
-      this.$router.push("/cart");
-    }
-  }
-};
+      this.$router.push("/cart")
+    },
+  },
+}
 </script>
 
 <style lang="scss">
