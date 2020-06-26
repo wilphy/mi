@@ -120,8 +120,8 @@
 
         <div class="header-searchbar">
           <div class="wrapper">
-            <input type="text" name="keyword" />
-            <a href="javascript:;"></a>
+            <input type="text" name="keyword" v-model="keyword" />
+            <a href="javascript:;" @click="handleSearch"></a>
           </div>
         </div>
       </div>
@@ -130,11 +130,13 @@
 </template>
 
 <script>
+import { Message } from "element-ui"
 export default {
   name: "nav-header",
   data() {
     return {
       phoneList: [],
+      keyword: "",
     }
   },
   computed: {
@@ -198,6 +200,15 @@ export default {
     //跳转购物车
     goToCart() {
       this.$router.push("/cart")
+    },
+
+    // 搜索
+    handleSearch() {
+      if (!this.keyword) {
+        Message.warning("请输入搜索关键字")
+      } else {
+        Message.warning("暂无搜索功能")
+      }
     },
   },
 }
@@ -334,7 +345,17 @@ export default {
           }
           a {
             @include bgImg(18px, 18px, "/imgs/icon-search.png");
+            display: inline-block;
             margin-left: 10px;
+            position: relative;
+            &::after {
+              content: "";
+              position: absolute;
+              left: -12px;
+              top: -16px;
+              right: -12px;
+              bottom: -16px;
+            }
           }
         }
       }
