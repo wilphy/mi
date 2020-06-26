@@ -18,7 +18,7 @@
             prop="username"
             class="input"
             :rules="[
-              { required: true, message: 'asas', trigger: 'change' },
+              { required: true, message: '不能为空', trigger: 'change' },
               {
                 min: 3,
                 max: 8,
@@ -39,7 +39,7 @@
             prop="password"
             class="input"
             :rules="[
-              { required: true, message: 'asas', trigger: 'change' },
+              { required: true, message: '不能为空', trigger: 'change' },
               {
                 min: 3,
                 max: 8,
