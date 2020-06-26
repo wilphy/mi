@@ -61,7 +61,7 @@
                 :key="index"
               >
                 <h2>{{ item.receiverName }}</h2>
-                <div class="phone">{{ item.receiverMobile }}</div>
+                <div class="phone">{{ item.receiverMobile.replace(/(^\d{3}|\d{4}\B)/g,"$1-") }}</div>
                 <div class="street">
                   {{
                     item.receiverProvince +
