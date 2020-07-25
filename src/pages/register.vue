@@ -126,7 +126,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .login {
   & > .container {
     height: 113px;
@@ -136,7 +136,7 @@ export default {
     }
   }
   .wrapper {
-    background: url("/imgs/login-bg.jpg") no-repeat center;
+    background: url("/imgs/login-bg.jpg") no-repeat top;
     .container {
       height: 576px;
       position: relative;

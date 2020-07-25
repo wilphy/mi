@@ -51,8 +51,8 @@
               <!-- 第一张和最后一张轮播图不进行懒加载 -->
               <img
                 :src="item.img"
-                v-if="index == 0 || index == item.length - 1"/>
-              <img v-else v-lazy="item.img" alt=""
+                v-if="index == 0 || index == slideList.length - 1"/>
+              <img v-else v-lazy="item.img"
             /></a>
           </swiper-slide>
           <!-- Optional controls -->
@@ -76,8 +76,8 @@
       <!-- banner -->
       <div class="banner">
         <a :href="'/#/product/30'">
-          <img v-lazy="'/imgs/banner-1.png'" alt="" /> </a
-        >'
+          <img v-lazy="'/imgs/banner-1.png'" alt="" />
+        </a>
       </div>
     </div>
 
@@ -149,12 +149,9 @@ export default {
       swiperOption: {
         autoplay: true, //自动播放
         loop: true, //无线循环
-        effect: "cube", //切换效果
-        cubeEffect: {
-          slideShadows: true,
-          shadow: true,
-          shadowOffset: 100,
-          shadowScale: 0.6,
+        effect: "fade", //切换效果
+        fadeEffect: {
+          crossFade: true,
         },
         //分页器
         pagination: {
@@ -373,15 +370,14 @@ export default {
   }
   .ads-box {
     @include flex();
-    margin-top: 14px;
-    margin-bottom: 31px;
+    margin-top: 26px;
     a {
       width: 296px;
       height: 167px;
     }
   }
   .banner {
-    margin-bottom: 50px;
+    margin: 26px 0 20px;
   }
   .product-box {
     background-color: $colorJ;
@@ -415,6 +411,11 @@ export default {
             height: 302px;
             background-color: $colorG;
             text-align: center;
+            transition: transform 0.5s;
+            &:hover {
+              transform: scale(1.05);
+              border: 1px solid #f06;
+            }
             span {
               display: inline-block;
               width: 67px;
